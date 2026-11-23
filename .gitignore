@@ -1,0 +1,20 @@
+# .gitignore — mirror-v-selfportrait
+# Ignores IDE, OS, and editor files. The site itself is just index.html.
+
+# JetBrains (WebStorm / IntelliJ / PyCharm)
+.idea/
+*.iml
+
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# Logs / temp
+*.log
+*.tmp
