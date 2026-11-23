@@ -1,411 +1,20 @@
 <!DOCTYPE html>
+<!--
+  File:        index.html
+  Project:     Mirror or Self-Portrait — Research Project Walkthrough
+  Author:      Jo Cichon
+  Description: Companion web page to the "Mirror or Self-Portrait" research
+               poster. Walks through the research question, the two-axis
+               framework (Mirror vs. Self-Portrait, Checklist vs. Situated
+               ethics), the review method, the paper-coding process, and the
+               project's outputs. Styles live in css/styles.css.
+-->
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Research Project Walkthrough</title>
-  <style>
-    :root {
-      --bg: #f7f4ef;
-      --paper: #fffdf9;
-      --ink: #1f1d1a;
-      --muted: #5e5a54;
-      --line: #d8d1c7;
-      --accent: #7a2e2e;
-      --accent-soft: #efe1dc;
-      --accent-deep: #532020;
-      --shadow: 0 10px 30px rgba(31, 29, 26, 0.08);
-      --radius: 18px;
-      --maxw: 1200px;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      font-family: "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background: linear-gradient(180deg, #f3eee7 0%, #f8f5f0 100%);
-      color: var(--ink);
-      line-height: 1.6;
-    }
-
-    a {
-      color: var(--accent);
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    .page {
-      max-width: var(--maxw);
-      margin: 0 auto;
-      padding: 28px 18px 60px;
-    }
-
-    .hero {
-      background: var(--paper);
-      border: 1px solid var(--line);
-      border-radius: 28px;
-      box-shadow: var(--shadow);
-      padding: 34px 28px;
-      margin-bottom: 22px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero::after {
-      content: "";
-      position: absolute;
-      right: -60px;
-      top: -60px;
-      width: 220px;
-      height: 220px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(122,46,46,0.12) 0%, rgba(122,46,46,0.03) 60%, transparent 75%);
-      pointer-events: none;
-    }
-
-    .eyebrow {
-      display: inline-block;
-      font-size: 0.82rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent);
-      font-weight: 700;
-      margin-bottom: 10px;
-    }
-
-    h1, h2, h3, h4 {
-      line-height: 1.15;
-      margin: 0 0 12px;
-      font-family: Georgia, "Times New Roman", serif;
-    }
-
-    h1 {
-      font-size: clamp(2.2rem, 4vw, 4rem);
-      max-width: 12ch;
-    }
-
-    .subtitle {
-      max-width: 720px;
-      font-size: 1.08rem;
-      color: var(--muted);
-      margin: 14px 0 0;
-    }
-
-    .topnav {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 22px;
-    }
-
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      padding: 8px 14px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      background: #faf7f2;
-      color: var(--ink);
-      font-size: 0.95rem;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 18px;
-    }
-
-    .card {
-      background: var(--paper);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 22px;
-    }
-
-    .full { grid-column: span 12; }
-    .half { grid-column: span 6; }
-    .third { grid-column: span 4; }
-    .two-third { grid-column: span 8; }
-
-    .section-title {
-      font-size: 1.7rem;
-      margin-bottom: 14px;
-    }
-
-    .lede {
-      font-size: 1.02rem;
-      color: var(--muted);
-      margin-bottom: 16px;
-      max-width: 75ch;
-    }
-
-    .kicker {
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--accent);
-      font-weight: 700;
-      margin-bottom: 10px;
-    }
-
-    .framework {
-      display: grid;
-      grid-template-columns: 110px 1fr 1fr;
-      gap: 10px;
-      margin-top: 12px;
-      align-items: stretch;
-    }
-
-    .framework .label,
-    .framework .cell,
-    .framework .corner {
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: 14px;
-      background: #fcfaf6;
-    }
-
-    .framework .corner {
-      background: var(--accent-soft);
-      font-weight: 700;
-      color: var(--accent-deep);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-    }
-
-    .framework .label {
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      background: #faf7f2;
-    }
-
-    .framework .cell h4 {
-      font-size: 1.08rem;
-      margin-bottom: 8px;
-    }
-
-    .framework .cell p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 0.96rem;
-    }
-
-    .steps {
-      display: grid;
-      gap: 12px;
-      margin-top: 10px;
-    }
-
-    .step {
-      display: grid;
-      grid-template-columns: 54px 1fr;
-      gap: 14px;
-      align-items: start;
-      padding: 14px;
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      background: #fcfaf6;
-    }
-
-    .step-number {
-      width: 54px;
-      height: 54px;
-      border-radius: 50%;
-      background: var(--accent);
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 800;
-      font-size: 1.1rem;
-      font-family: "Inter", sans-serif;
-    }
-
-    .step h4 {
-      font-size: 1.08rem;
-      margin-bottom: 6px;
-      font-family: "Inter", sans-serif;
-    }
-
-    .step p {
-      margin: 0;
-      color: var(--muted);
-    }
-
-    .criteria-list,
-    .bullet-list {
-      margin: 12px 0 0;
-      padding-left: 18px;
-    }
-
-    .criteria-list li,
-    .bullet-list li {
-      margin-bottom: 8px;
-    }
-
-    .walkthrough {
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 18px;
-      margin-top: 14px;
-    }
-
-    .panel {
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      background: #fcfaf6;
-      padding: 16px;
-    }
-
-    .paper-box {
-      background: #fbf5f2;
-      border-left: 5px solid var(--accent);
-      padding: 16px;
-      border-radius: 14px;
-      margin-bottom: 14px;
-    }
-
-    .paper-box p:last-child,
-    .panel p:last-child {
-      margin-bottom: 0;
-    }
-
-    .tag-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 10px;
-    }
-
-    .tag {
-      display: inline-flex;
-      padding: 6px 10px;
-      border-radius: 999px;
-      background: var(--accent-soft);
-      color: var(--accent-deep);
-      font-size: 0.88rem;
-      font-weight: 600;
-      border: 1px solid #e6cfc8;
-    }
-
-    .scorecard {
-      display: grid;
-      gap: 10px;
-    }
-
-    .score-item {
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: 12px 14px;
-      background: #fffdf9;
-    }
-
-    .score-item strong {
-      display: block;
-      margin-bottom: 4px;
-    }
-
-    .rubric {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-      margin-top: 12px;
-    }
-
-    .rubric-card {
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 16px;
-      background: #fcfaf6;
-    }
-
-    .rubric-card h4 {
-      font-size: 1.02rem;
-      margin-bottom: 8px;
-      font-family: "Inter", sans-serif;
-    }
-
-    .callout {
-      border-left: 5px solid var(--accent);
-      padding: 16px 18px;
-      background: var(--accent-soft);
-      border-radius: 0 14px 14px 0;
-      color: var(--accent-deep);
-      font-weight: 600;
-      margin-top: 14px;
-    }
-
-    .process-line {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      align-items: center;
-      margin-top: 10px;
-    }
-
-    .process-node {
-      padding: 12px 14px;
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      background: #fcfaf6;
-      font-weight: 600;
-    }
-
-    .arrow {
-      color: var(--accent);
-      font-weight: 800;
-      font-size: 1.1rem;
-    }
-
-    .footer {
-      margin-top: 24px;
-      text-align: center;
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
-
-    @media (max-width: 960px) {
-      .half,
-      .third,
-      .two-third {
-        grid-column: span 12;
-      }
-
-      .walkthrough {
-        grid-template-columns: 1fr;
-      }
-
-      .framework {
-        grid-template-columns: 1fr;
-      }
-
-      .framework .corner,
-      .framework .label {
-        justify-content: flex-start;
-        text-align: left;
-      }
-
-      .rubric {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
   <div class="page">
@@ -414,7 +23,7 @@
   
   <h1>Mirror or Self-Portrait</h1>
   
-  <p style="font-size:1.25rem; font-weight:600; margin-top:6px;">
+  <p class="tagline">
     A Conceptual Framework for Understanding Ethical Discourse in Artificial Intelligence
   </p>
 
@@ -422,7 +31,7 @@
     Jo Cichon · M.S. Computer Science · Northeastern University
   </p>
 
-  <p class="subtitle" style="margin-top:10px;">
+  <p class="subtitle subtitle-spaced">
     This companion page extends the poster by walking through the research method,
     the emergent framework, and the coding process used to evaluate how individual
     papers map across ethical and conceptual dimensions.
@@ -697,7 +306,7 @@
               </div>
             </div>
 
-            <div class="panel" style="margin-top: 14px;">
+            <div class="panel panel-spaced">
               <h3>What gets written into the notes</h3>
               <p>
                 This paper is a strong theoretical anchor for the framework because it makes both sides of the mirror/self-portrait axis visible at once. On the one hand, it treats users as meaning-seeking subjects whose experience emerges through interaction, context, and use. On the other hand, it explicitly argues that technologies embed designer intentions, values, and assumptions about the user. Ethically, the paper is not centered on a checklist model. Instead, it frames meaningful HCI as dynamic, situated, and shaped by the interwovenness of freedom, responsibility, and noos across outcome, embeddedness, interaction, and usage. For coding purposes, it should be treated as a gold-standard example of a hybrid paper with strong situated emphasis.
